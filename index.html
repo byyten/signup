@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,84 +8,174 @@
     <link rel="stylesheet" href="styles.css">
     <!-- <script src="signup.js" > -->
 
-        <script>
 
-
-        </script>
 </head>
+
 <body>
-    
-<section class="left">
-    <img src="slice2.png" alt="slice2.png - den haag - wild scuplted sand mosaic - byyten">
 
-</section>
+    <section class="left">
+        <div>
+            <img src="chasing_rainbows_alpha.png" alt="slightly modified chasing rainbows icon from illustratedfaith.com" 
+            title="slightly modified chasing rainbows icon from illustratedfaith.com" width="120px">
+            <p>clear sky / chasing rainbows</p>
+        </div>
+        <img src="mysterydoug_rainbow.jpeg" alt="image from mysterydoug.com" title="image from mysterydoug.com">
 
-<section class="right">
-    <div class="intro">
-        <p>
-            This is not a real service! You know you need something like this in youe life
-            to help you realise your deepest dreams.
-        </p>
-        <p>
-            Sign up now to get started
+    </section>
 
-        </p>
-        <p>
-            you know you want to
-        </p>
+    <section class="right">
+        <div class="intro">
+            <p>
+                Chasing Rainbows is an in cerebral service! You know you would like this in your life
+                to help you realise your deepest dreams</br>
+                Sign up now to start your journey
+            </p>
+            <p>
+                
 
-        <p>
-            let's do this
-        </p>
-    </div>
+            </p>
+            <p>
+                You know you can do it 
+            </p>
 
-    <form novalidate>
-        <ul>
-            <li>
-                <div>
-                    <label for="first">FIRST NAME</label>
-                    <input type="text" name="first" id="first">
-                </div>
-                <div>
-                    <label for="last">LAST NAME</label>
-                    <input type="text" name="last" id="last">
-                </div>
-            </li>
-            <li>
-                <div>
-                    <label for="email">EMAIL</label>
-                    <input type="email" name="email" id="email" required>
-                </div>
-            <div>
-                <label for="tel">PHONE NUMBER</label>
-                <input type="tel" name="tel" id="tel">
-            </div>
-            </li>
-            <li>
-                <div>
-                    <label for="password">PASSWORD</label>
-                    <input type="password" name="password" id="password" required minlength="8">
-                </div>
-                <div>
-                    <label for="confirm">CONFIRM PASSWORD</label>
-                    <input type="password" name="confirm" id="confirm" required minlength="8">
-                </div>
-            </li>
-        </ul>
+            <p>
+                And you want it
+            </p>
+        </div>
 
- 
+        <form novalidate>
+            <ul>
+                <li>
+                    <div>
+                        <label for="first">FIRST NAME</label>
+                        <input type="text" name="first" id="first" title="For personalised communications">
+                    </div>
+                    <div>
+                        <label for="last">LAST NAME</label>
+                        <input type="text" name="last" id="last">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <label for="email">EMAIL *</label>
+                        <input type="email" name="email" id="email" required
+                            title="Email is required for communications">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
+                    <div>
+                        <label for="mobile">MOBILE PHONE *</label>
+                        <input type="tel" name="mobile" id="mobile"
+                            title="required for 2 Factor Authentication in format 012-3456-7890" required
+                            pattern="\d{3}-\d{4}-\d{4}">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <label for="password">PASSWORD *</label>
+                        <input type="password" name="password" id="password"
+                            title="Core requirement for Authentication " required minlength="8">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
+                    <div>
+                        <label for="check">CONFIRM PASSWORD *</label>
+                        <input type="password" name="check" id="check" title="Core requirement for Authentication "
+                            required minlength="8">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
+                </li>
+            </ul>
+            <button type="submit">start Chasing!</button>
+        </form>
 
-        <button type="submit">Create Account</button>
-    </form>
+        <div class="doit">
+            <p>Already chasing?
+                <a href="#">chase some more</a>
+            </p>
+        </div>
 
-    <div class="doit">
-        <p>Already have an account? 
-            <a href="#">Log in</a>
-        </p>
-    </div>
+    </section>
 
-</section>
-    
+    <script>
+        const rex_caps = /[A-Z]+/
+        const rex_nums = /[0-9]+/
+        const rex_syms = /[\-\{\}\[\]\_\·\/\^\.\,\#\~\?\*\!\'\"\$\%\&\=\(\)\+\\\;\:]+/
 
+        const form = document.querySelector("form > button");
+        const email = document.getElementById("email");
+        const emailError = document.querySelector("#email + span.error");
+        email.addEventListener("input", (event) => {
+            if (email.validity.valid) {
+                emailError.textContent = ""; 
+                emailError.className = "error"; 
+            } else {
+                emailError.textContent = "A valid (correct format) email address is required";
+                emailError.className = "error active";
+            }
+        });
+
+        const mobile = document.getElementById("mobile");
+        const mobileError = document.querySelector("#mobile + span.error");
+        mobile.addEventListener("input", (event) => {
+            if (mobile.validity.valid) {
+                mobileError.textContent = ""; 
+                mobileError.className = "error"; 
+            } else {
+                mobileError.textContent = "A correctly formatted mobile phone number is e.g: 012-2345-6789";
+                mobileError.className = "error active"
+            }
+        });
+
+        const password = document.getElementById("password");
+        const passwordError = document.querySelector("#password + span.error");
+        password.addEventListener("input", (event) => {
+            let checksum = passwd_checks(password.value)
+            console.log(checksum)
+            if (checksum == 15) {
+                password.validity.valid = true;
+                passwordError.textContent = ""; // Reset the content of the message
+                passwordError.className = "error"; // Reset the visual state of the message
+            } else {
+                password.validity.valid = false;
+                passwordError.textContent = "Passwords are 8+ characters with capitals, numbers and symbols";
+                passwordError.className = "error active";
+            }
+        });
+
+        const check = document.getElementById("check");
+        const checkError = document.querySelector("#check + span.error");
+        check.addEventListener("input", (event) => {
+            if (check.value === password.value) {
+                check.validity.valid = true;
+                checkError.textContent = ""; 
+                checkError.className = "error"; 
+            } else {
+                check.validity.valid = false;
+                checkError.textContent = "Passwords do not match"; 
+                checkError.className = "error active"; 
+            }
+        });
+
+        function passwd_checks(passwd) {
+            caps = rex_caps.test(passwd) ? 1 : 0
+            nums = rex_nums.test(passwd) ? 2 : 0
+            syms = rex_syms.test(passwd) ? 4 : 0
+            len = passwd.length >= 8 ? 8 : 0
+            return caps + nums + syms + len
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            if (!(
+                email.validity.valid &&  mobile.validity.valid &&
+                password.validity.valid && check.validity.valid
+            )) {
+                alert('Please attend to the problems in the form');
+            } 
+        });
+
+
+    </script>
 </body>
+
 </html>
